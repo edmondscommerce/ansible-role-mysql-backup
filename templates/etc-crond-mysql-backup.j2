@@ -11,3 +11,5 @@ if [ $size -lt {{ mysql_backup_minimum_expected_size }} ]; then
 fi
 
 mv "$OUTPUT.tmp" "$OUTPUT"
+
+find {{ mysql_backup_dir | quote }} -type f -mtime +{{ mysql_backup_retention_days }} -name '*.gz' -print0 | xargs -r0 rm --
