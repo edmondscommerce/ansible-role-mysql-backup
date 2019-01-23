@@ -12,4 +12,6 @@ fi
 
 mv "$OUTPUT.tmp" "$OUTPUT"
 
+gzip $OUTPUT
+
 find {{ mysql_backup_dir | quote }} -type f -mtime +{{ mysql_backup_retention_days }} -name '*.gz' -print0 | xargs -r0 rm --
